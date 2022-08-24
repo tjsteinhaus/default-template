@@ -1,0 +1,33 @@
+{
+  "name": "default-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "predev": "yarn build",
+    "dev": "yarn start",
+    "start": "node -r dist/app.js",
+    "lint": "eslint ./src/**/*.ts --fix",
+    "type-check": "tsc -p tsconfig.json --noEmit",
+    "build": "rimraf dist && tsc -p tsconfig.json",
+    "purge": "rimraf node_modules dist"
+  },
+  "author": "Tyler Steinhaus",
+  "license": "ISC",
+  "dependencies": {
+    "node-fetch": "^3.2.10",
+    "ramda": "^0.27.1"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.20",
+    "@types/ramda": "^0.27.24",
+    "@typescript-eslint/eslint-plugin": "^4.13.0",
+    "@typescript-eslint/parser": "^4.13.0",
+    "eslint": "^7.17.0",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
+    "typescript": "v4.7.4"
+  }
+}

@@ -36,7 +36,7 @@ jobs:
             - name: Verify it builds
               run: yarn build
             - name: Release Version
-              run: yarn release-it -ci -i ${{ inputs.version }}
+              run: yarn release-it -i ${{ inputs.version }}
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

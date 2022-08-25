@@ -23,8 +23,8 @@ jobs:
               uses: actions/setup-node@v1
               with:
                 node-version: 16
-            - name: Generate .npmrc
-              run: echo "//npm.pkg.github.com/:_authToken=${NPM_TOKEN}" > .npmrc
+            - name: Setup NPM Registry
+              run: npm set @tjsteinhaus:registry https://npm.pkg.github.com/; npm set //npm.pkg.github.com/:_authToken=$NPM_TOKEN
             - name: Install Dependencies
               run: yarn
             - name: Check Unit Tests

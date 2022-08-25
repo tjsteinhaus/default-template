@@ -26,7 +26,9 @@ jobs:
               with:
                 node-version: 16
             - name: Setup NPM Registry
-              run: npm set //npm.pkg.github.com/:_authToken $NPM_TOKEN
+              run: |
+                npm set @tjsteinhaus:registry https://npm.pkg.github.com/
+                npm set //npm.pkg.github.com/:_authToken $NPM_TOKEN
               env:
                 NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
             - name: Install Dependencies

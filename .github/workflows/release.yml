@@ -7,6 +7,9 @@ on:
                 description: Semver version of the release
                 required: true
 
+env:
+    NPM_TOKEN: ${{ secrets.NPM_REGISTRY_TOKEN }}
+
 jobs:
     test-and-build:
         runs-on: ubuntu-latest
@@ -20,9 +23,7 @@ jobs:
               with:
                 node-version: 16
             - name: Setup NPM Registry
-              uses: actions/labeler@v4
-              with:
-                repo-token: ${{ secrets.NPM_REGISTRY_TOKEN }}
+              run: npm set //npm.pkg.github.com/:_authToken $NPM_TOKEN
             - name: Install Dependencies
               run: yarn
             - name: Check Unit Tests

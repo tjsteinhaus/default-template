@@ -1,4 +1,4 @@
-name: Cut Release
+name: cut release
 
 on:
     workflow_dispatch:
@@ -12,12 +12,13 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
-            with:
-                fetch-depth: 0
+              with:
+                  fetch-depth: 0
             - uses: actions/setup-node@v1
-            with:
-                node-version: 16
+              with:
+                  node-version: 16
             - run: yarn
             - run: yarn test
             - run: yarn build
+            - name: Release Version
             - run: yarn release-it -i ${{ github.version }}

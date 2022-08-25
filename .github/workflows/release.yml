@@ -30,7 +30,7 @@ jobs:
                 npm set @tjsteinhaus:registry https://npm.pkg.github.com/
                 npm set //npm.pkg.github.com/:_authToken $NPM_TOKEN
               env:
-                NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+                NPM_TOKEN: ${{ secrets.NPM_REGISTRY_TOKEN }}
             - name: Install Dependencies
               run: yarn
             - name: Check Unit Tests
@@ -41,4 +41,4 @@ jobs:
               run: yarn release-it
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+                  NPM_TOKEN: ${{ secrets.NPM_REGISTRY_TOKEN }}

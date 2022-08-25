@@ -8,7 +8,8 @@ on:
                 required: true
 
 env:
-    NPM_TOKEN: ${{ secrets.NPM_REGISTRY_TOKEN }}
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 jobs:
     test-and-build:
@@ -22,8 +23,8 @@ jobs:
               uses: actions/setup-node@v1
               with:
                 node-version: 16
-            - name: Setup NPM Registry
-              run: npm set //npm.pkg.github.com/:_authToken $NPM_TOKEN
+            - name: Generate .npmrc
+              run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
             - name: Install Dependencies
               run: yarn
             - name: Check Unit Tests
@@ -31,4 +32,4 @@ jobs:
             - name: Verify it builds
               run: yarn build
             - name: Release Version
-              run: yarn release-it -i ${{ inputs.version }}
+              run: yarn release-it --npm.skipChecks -i ${{ inputs.version }}

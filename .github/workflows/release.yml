@@ -11,14 +11,19 @@ jobs:
     test-and-build:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v2
-              with:
-                fetch-depth: 0
-            - uses: actions/setup-node@v1
+            - name: Print semver version
+              run: echo Version ${{ inputs.version }}
+            - name: Checkout main
+              uses: actions/checkout@main
+            - name: Setup Node
+              uses: actions/setup-node@v1
               with:
                 node-version: 16
-            - run: yarn
-            - run: yarn test
-            - run: yarn build
+            - name: Install Dependencies
+              run: yarn
+            - name: Check Unit Tests
+              run: yarn test
+            - name: Verify it builds
+              run: yarn build
             - name: Release Version
-            - run: yarn release-it -i ${{ github.version }}
+              run: yarn release-it -i ${{ inputs.version }}

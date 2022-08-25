@@ -24,7 +24,7 @@ jobs:
               with:
                 node-version: 16
             - name: Generate .npmrc
-              run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
+              run: echo "//npm.pkg.github.com/:_authToken=${NPM_TOKEN}" > .npmrc
             - name: Install Dependencies
               run: yarn
             - name: Check Unit Tests

@@ -19,6 +19,10 @@ jobs:
               uses: actions/setup-node@v1
               with:
                 node-version: 16
+            - name: Setup NPM Registry
+              uses: actions/labeler@v4
+              with:
+                repo-token: ${{ secrets.NPM_REGISTRY_TOKEN }}
             - name: Install Dependencies
               run: yarn
             - name: Check Unit Tests
